@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área Animal - AgroAlerta</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/area_animal.css">
+<link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="../img/logo.jpeg" alt="Logo" class="nav-logo-img">
+        <span class="logo-text">AgroAlerta</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="agroalerta.html">AgroAlerta</a></li>
+            <li><a class="active" href="area_animal.html">Área animal</a></li>
+            <li><a href="biografia.html">Biografía</a></li>
+            <!-- 🔐 NUEVO -->
+            <li id="loginItem"><a href="login.html">Login</a></li>
+            <li id="logoutItem" style="display:none;">
+                <a href="#" onclick="logout()">Cerrar sesión</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Área Animal</h1>
+        <p>Control y salud del ganado</p>
+    </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+    <div class="container">
+        <p>
+        En esta sección se presenta el funcionamiento del sistema de registro animal, junto con información básica sobre el control sanitario del ganado.
+        </p>
+    </div>
+</section>
+
+<!-- CONTENIDO -->
+<section class="container section-padding">
+
+    <div class="grid">
+
+        <div class="card">
+            <h4>¿Cómo funciona el registro?</h4>
+            <p>
+            El sistema permite registrar cada animal con datos como identificación, raza, sexo, edad y peso. A partir de esta información, se calcula automáticamente su estado de salud, facilitando su seguimiento y control.
+            </p>
+        </div>
+
+        <div class="card">
+            <h4>Vacunas</h4>
+            <p>
+            La vacunación es fundamental para prevenir enfermedades en el ganado. Mantener un control adecuado permite reducir riesgos sanitarios y mejorar la productividad del establecimiento.
+            </p>
+        </div>
+
+        <div class="card">
+            <h4>Enfermedades</h4>
+            <p>
+            Detectar enfermedades a tiempo es clave para evitar pérdidas. Un buen registro permite identificar problemas de salud y tomar decisiones de manera más rápida y efectiva.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BOTÓN -->
+<section class="cta">
+    <a href="registro_animal.html" class="btn-primary">
+        Ir al Registro Animal
+    </a>
+</section>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos de Servicio</a>
+    </div>
+
+    <div class="copyright">
+        &copy; 2026 AgroAlerta
+    </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const usuario = obtenerUsuario();
+
+    const loginItem = document.getElementById("loginItem");
+    const logoutItem = document.getElementById("logoutItem");
+
+    if (usuario) {
+        loginItem.style.display = "none";
+        logoutItem.style.display = "inline-block";
+    } else {
+        loginItem.style.display = "inline-block";
+        logoutItem.style.display = "none";
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Registro Usuario</title>
+
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="card">
+    <img src="../img/logo.jpeg" alt="Logo" class="logo-login">
+
+    <h2>Crea tu Cuenta de Usuario</h2>
+
+    <!-- 🔐 IMPORTANTE: IDs -->
+    <input type="text" id="usuario" placeholder="Usuario">
+
+    <input type="password" id="password" placeholder="Contraseña">
+
+    <!-- 🔐 BOTÓN CORREGIDO -->
+    <button type="button" onclick="registrarUsuario()">Registrarme</button>
+
+    <div class="link">
+        ¿Ya tienes cuenta?
+        <a href="login.html">Inicia sesión aquí</a>
+    </div>
+
+</div>
+
+<!-- 🔧 Scripts -->
+<script src="../js/agroalerta.js"></script>
+<script src="../js/registro_usuario.js"></script>
+
+</body>
+</html>

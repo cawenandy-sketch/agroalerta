@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Área Animal - AgroAlerta</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/agroalerta.css">
+<link rel="stylesheet" href="../css/registro_animal.css">
+<link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="../img/logo.jpeg" class="nav-logo-img">
+        <span class="logo-text">AgroAlerta</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="agroalerta.html">AgroAlerta</a></li>
+            <li><a href="area_animal.html">Área animal</a></li>
+            <li><a href="biografia.html">Biografia</a></li>
+
+            <!-- 🔐 LOGIN / LOGOUT -->
+            <li id="loginItem"><a href="login.html">Login</a></li>
+            <li id="logoutItem" style="display:none;">
+                <a href="#" onclick="logout()">Cerrar sesión</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- HERO SIMPLE DEL MÓDULO -->
+<section class="hero-modulo">
+    <h1>Área Animal</h1>
+    <p id="mensajeUsuario">Gestión inteligente del ganado</p>
+</section>
+
+<!-- CONTENIDO -->
+<section class="container section-padding">
+
+<h2 class="titulo-seccion">Registro Ganadero</h2>
+
+<div class="contenedor">
+
+<div class="formulario">
+
+<h3>Registrar Animal</h3>
+
+<input id="idAnimal" type="text" placeholder="ID / Caravana">
+
+<select id="raza">
+<option>Angus</option>
+<option>Hereford</option>
+</select>
+
+<select id="sexo">
+<option>Macho</option>
+<option>Hembra</option>
+</select>
+
+<input id="edad" type="number" placeholder="Edad">
+
+<input id="peso" type="number" placeholder="Peso (kg)" min="45" max="1000" oninput="actualizarSalud()">
+
+<select id="proposito">
+<option>Producción de leche</option>
+<option>Engorde</option>
+<option>Reproducción</option>
+</select>
+
+<input id="salud" type="text" placeholder="Estado de salud automático" readonly>
+
+<textarea id="observaciones" placeholder="Observaciones"></textarea>
+
+<button onclick="registrarAnimal()">Registrar Animal</button>
+
+</div>
+
+<div class="guia">
+
+<h3>Guía de peso aproximado</h3>
+
+<table>
+<tr><th>Edad</th><th>Peso esperado</th></tr>
+<tr><td>0 años</td><td>30 - 80 kg</td></tr>
+<tr><td>1 año</td><td>250 - 350 kg</td></tr>
+<tr><td>2 años</td><td>350 - 500 kg</td></tr>
+<tr><td>3 años</td><td>400 - 600 kg</td></tr>
+<tr><td>4+ años</td><td>500 - 700 kg</td></tr>
+</table>
+
+<p class="nota">
+Valores aproximados para razas comunes en Uruguay como Angus y Hereford.
+</p>
+
+</div>
+
+</div>
+
+<div class="busqueda">
+<input id="buscar" type="text" placeholder="Buscar animal..." onkeyup="buscarAnimal()">
+</div>
+
+<h2 class="titulo-seccion">Animales Registrados</h2>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Raza</th>
+<th>Sexo</th>
+<th>Edad</th>
+<th>Peso</th>
+<th>Salud</th>
+<th>Estado</th>
+<th>Acciones</th>
+</tr>
+</thead>
+
+<tbody id="tablaAnimales"></tbody>
+
+</table>
+
+</section>
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos de Servicio</a>
+    </div>
+
+    <div class="copyright">
+        &copy; 2026 AgroAlerta
+    </div>
+</footer>
+
+<!-- 🔧 Scripts -->
+<script src="../js/agroalerta.js"></script>
+<script src="../js/registro_animal.js"></script>
+
+<!-- 🔐 CONTROL DE USUARIO -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const usuario = obtenerUsuario();
+
+    const loginItem = document.getElementById("loginItem");
+    const logoutItem = document.getElementById("logoutItem");
+    const mensaje = document.getElementById("mensajeUsuario");
+
+    if (usuario) {
+        loginItem.style.display = "none";
+        logoutItem.style.display = "inline-block";
+        mensaje.textContent = "Bienvenido, " + usuario.usuario;
+    } else {
+        loginItem.style.display = "inline-block";
+        logoutItem.style.display = "none";
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroAlerta - Gestión Inteligente</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/inicio.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="../img/logo.jpeg" alt="Logo AgroAlerta" class="nav-logo-img">
+        <span class="logo-text">AgroAlerta</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href="agroalerta.html">AgroAlerta</a></li>
+            <li><a href="area_animal.html">Área animal</a></li>
+            <li><a href="biografia.html">Biografía</a></li>
+
+            <!-- 🔐 NUEVO -->
+            <li id="loginItem"><a href="login.html">Login</a></li>
+            <li id="logoutItem" style="display:none;">
+                <a href="#" onclick="logout()">Cerrar sesión</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Bienvenido a<br>AgroAlerta</h1>
+    <p>La información que el campo necesita.</p>
+    <a href="agroalerta.html" class="btn-primary">Saber más</a>
+</section>
+
+<section class="info-section">
+    <div class="container">
+        <h2>Información</h2>
+        <p>
+            AgroAlerta es una aplicación web que funciona como guía de campo para el peón rural,
+            permitiendo gestionar y controlar el ganado de forma simple y eficiente.
+        </p>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <h3 class="section-title">Explorar AgroAlerta</h3>
+
+        <div class="features-grid-v2">
+
+            <div class="feature-card" onclick="window.location.href='agroalerta.html'">
+                <div class="icon">🐂</div>
+                <h4>AgroAlerta</h4>
+                <p>Conoce el problema que buscamos resolver y cómo funciona AgroAlerta.</p>
+            </div>
+
+            <div class="feature-card" onclick="window.location.href='area_animal.html'">
+                <div class="icon">🐾</div>
+                <h4>Registro ganadero</h4>
+                <p>Bienestar y registro de su ganado.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">💉</div>
+                <h4>Vacunas y enfermedades</h4>
+                <p>Información básica para prevenir.</p>
+            </div>
+
+            <div class="feature-card" onclick="window.location.href='biografia.html'">
+                <div class="icon">📖</div>
+                <h4>Biografía</h4>
+                <p>Descubre la historia detrás del proyecto y por qué fue creado.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="bio-section">
+    <div class="container">
+        <div class="bio-card-horizontal">
+            <img src="../img/logo.jpeg" alt="Fundadores de AgroAlerta" class="founder-img-large">
+
+            <div class="bio-text-content">
+                <h3>Biografía</h3>
+
+                <div class="founder-info">
+                    <strong>Fundado por Cawen, Barrios y Sosa</strong><br>
+                    <span>Innovación agropecuaria</span>
+                </div>
+
+                <p class="bio-text">
+                    Dedicados a mejorar la gestión en la industria agropecuaria a través de soluciones
+                    digitales escalables y sostenibles, uniendo tecnología y tradición.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Términos de servicio</a>
+    </div>
+
+    <div>
+        &copy; 2026 AgroAlerta
+    </div>
+</footer>
+
+<!-- 🔧 Scripts -->
+<script src="../js/agroalerta.js"></script>
+<script src="../js/inicio.js"></script>
+
+<!-- 🔐 CONTROL LOGIN / LOGOUT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const usuario = obtenerUsuario();
+
+    const loginItem = document.getElementById("loginItem");
+    const logoutItem = document.getElementById("logoutItem");
+
+    if (usuario) {
+        loginItem.style.display = "none";
+        logoutItem.style.display = "inline-block";
+    } else {
+        loginItem.style.display = "inline-block";
+        logoutItem.style.display = "none";
+    }
+});
+</script>
+
+</body>
+</html>

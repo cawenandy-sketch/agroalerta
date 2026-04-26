@@ -1,0 +1,169 @@
+:root {
+    --primary: #2d5a27; /* Verde AgroAlerta */
+    --primary-hover: #1e3d1a;
+    --dark: #3d3025;    /* Marrón del logo */
+    --accent: #d4a373;
+}
+
+body {
+    /* Fondo con tu imagen de campo */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/campo.jpg') center/cover no-repeat;
+    font-family: 'Inter', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0px 15px 35px rgba(0,0,0,0.3);
+    animation: aparecer 0.5s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Contenedor para tu logo dentro de la tarjeta */
+.logo-login {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid var(--primary);
+}
+
+h2 {
+    color: var(--dark);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(45, 90, 39, 0.2);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.tipoBtn {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: white;
+}
+
+.tipoBtn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.link a {
+    color: var(--primary);
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link a:hover { text-decoration: underline; }
+/* En tu estilos.css busca .logo-login y asegúrate de que tenga esto */
+.logo-login {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 10px; /* Espacio extra arriba si lo necesitas */
+    margin-bottom: 15px;
+    border: 2px solid var(--primary);
+    object-fit: cover; /* Para que no se deforme la imagen */
+}
+/* Estilo base para los enlaces del menú */
+/* Estilo base para los enlaces del menú */
+nav a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative; /* Necesario para posicionar la línea debajo */
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+/* El "subrayado" que aparece al pasar el mouse */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0); /* Empieza invisible (escala 0) */
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary); /* El verde de AgroAlerta */
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+/* Animación al pasar el mouse (Hover) */
+nav a:hover {
+    color: var(--primary);
+}
+
+nav a:hover::after {
+    transform: scaleX(1); /* La línea se expande a tamaño completo */
+    transform-origin: bottom left;
+}
+
+/* Efecto de "pulsación" al mantener presionado (Active) */
+nav a:active {
+    transform: scale(0.95);
+    transition: 0.1s;
+}

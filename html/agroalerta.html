@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgroAlerta</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/agroalerta.css">
+<link rel="stylesheet" href="../css/responsive.css">
+
+
+</head>
+
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="../img/logo.jpeg" alt="Logo" class="nav-logo-img">
+        
+        <span class="logo-text">AgroAlerta</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a class="active" href="#">AgroAlerta</a></li>
+            <li><a href="area_animal.html">Área animal</a></li>
+            <li><a href="biografia.html">Biografia</a></li>
+            <!-- 🔐 NUEVO -->
+            <li id="loginItem"><a href="login.html">Login</a></li>
+            <li id="logoutItem" style="display:none;">
+                <a href="#" onclick="logout()">Cerrar sesión</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>AgroAlerta</h1>
+        <p>La tecnología al servicio de la tradición.</p>
+    </div>
+</section>
+
+
+<!-- INFO -->
+<section class="info-section">
+    <div class="container">
+        <h2>Sobre AgroAlerta</h2>
+    </div>
+</section>
+
+
+<!-- TARJETAS -->
+<section class="container section-padding">
+
+<div class="features-grid-v2">
+
+    <!-- QUE ES -->
+    <div class="feature-card">
+        <div class="icon">🐂</div>
+        <h4>¿Qué es AgroAlerta?</h4>
+        <p>
+        AgroAlerta es una plataforma digital diseñada para ayudar a los productores ganaderos a gestionar y controlar su ganado de forma eficiente. 
+        Permite registrar información clave como la salud, alimentación, peso, vacunación y enfermedades de cada animal, mejorando la organización y la toma de decisiones.
+        </p>
+    </div>
+
+    <!-- PROBLEMA -->
+     <div class="feature-card">
+        <div class="icon">🎯</div>
+        <h4>Objetivo</h4>
+        <p>
+        Desarrollar un sistema digital que permita a los productores llevar un control organizado, eficiente y actualizado del ganado, mejorando la toma de decisiones, reduciendo errores y optimizando la productividad del sector.
+        </p>
+    </div>
+
+    <div class="feature-card">
+        <div class="icon">⚠</div>
+        <h4>Problema</h4>
+        <p>
+        En el sector ganadero es común la falta de organización en el manejo del ganado, especialmente cuando los registros se llevan de forma manual. 
+        Esto puede generar confusiones, errores en las guías y dificultades para controlar la salud y el estado de los animales.
+        </p>
+    </div>
+
+    <!-- SOLUCION -->
+    <div class="feature-card">
+        <div class="icon">✔</div>
+        <h4>Solución</h4>
+        <p>
+       AgroAlerta centraliza la información del ganado en una aplicación web simple e intuitiva, permitiendo registrar y consultar datos de forma organizada. 
+De esta manera, el productor puede llevar un mejor control de su ganado, reducir errores y facilitar la gestión diaria.
+        </p>
+    </div>
+
+    
+    </div>
+
+</div>
+
+</section>
+
+
+<footer>
+    <div class="footer-links">
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos de Servicio</a>
+    </div>
+
+    <div class="copyright">
+        &copy; 2026 AgroAlerta
+    </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const usuario = obtenerUsuario();
+
+    const loginItem = document.getElementById("loginItem");
+    const logoutItem = document.getElementById("logoutItem");
+
+    if (usuario) {
+        loginItem.style.display = "none";
+        logoutItem.style.display = "inline-block";
+    } else {
+        loginItem.style.display = "inline-block";
+        logoutItem.style.display = "none";
+    }
+});
+</script>
+</body>
+</html>

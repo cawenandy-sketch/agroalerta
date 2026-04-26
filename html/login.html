@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Login AgroAlerta</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="card">
+    <img src="../img/logo.jpeg" alt="Logo" class="logo-login">
+
+    <h2>Bienvenido a AgroAlerta</h2>
+
+    <input type="text" id="usuario" placeholder="Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+
+    <!-- 🔐 LOGIN -->
+    <button type="button" onclick="login()">Iniciar Sesión</button>
+
+    <!-- 👇 NUEVO -->
+    <p>O si solo quieres explorar:</p>
+    <button type="button" onclick="entrarComoInvitado()">Entrar como invitado</button>
+
+    <p>¿Olvidaste tu contraseña?</p>
+
+    <div class="link">
+        ¿No tienes cuenta?
+        <a href="registro_usuario.html">Regístrate aquí</a>
+    </div>
+
+</div>
+
+<script src="../js/agroalerta.js"></script>
+<script src="../js/login.js"></script>
+
+</body>
+</html>
