@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <title>Login AgroAlerta</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="../css/login.css">
 <link rel="stylesheet" href="../css/responsive.css">
 
@@ -21,14 +20,13 @@
     <input type="text" id="usuario" placeholder="Usuario">
     <input type="password" id="password" placeholder="Contraseña">
 
-    <!-- 🔐 LOGIN -->
-    <button type="button" onclick="login()">Iniciar Sesión</button>
+    <!-- 🔥 SIN onclick -->
+    <button type="button" id="btnLogin">Iniciar Sesión</button>
 
-    <!-- 👇 NUEVO -->
     <p>O si solo quieres explorar:</p>
-    <button type="button" onclick="entrarComoInvitado()">Entrar como invitado</button>
 
-    <p>¿Olvidaste tu contraseña?</p>
+    <!-- 🔥 SIN onclick -->
+    <button type="button" id="btnInvitado">Entrar como invitado</button>
 
     <div class="link">
         ¿No tienes cuenta?
@@ -37,7 +35,6 @@
 
 </div>
 
-<script src="../js/agroalerta.js"></script>
 <script src="../js/login.js"></script>
 
 </body>

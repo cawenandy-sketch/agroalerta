@@ -26,10 +26,11 @@
             <li><a href="agroalerta.html">AgroAlerta</a></li>
             <li><a href="area_animal.html">Área animal</a></li>
             <li><a class="active" href="#">Biografía</a></li>
-            <!-- 🔐 NUEVO -->
+
+            <!-- 🔐 LOGIN / LOGOUT -->
             <li id="loginItem"><a href="login.html">Login</a></li>
             <li id="logoutItem" style="display:none;">
-                <a href="#" onclick="logout()">Cerrar sesión</a>
+                <a href="#" id="btnLogout">Cerrar sesión</a>
             </li>
         </ul>
     </nav>
@@ -42,6 +43,7 @@
         <p>Historia y desarrollo del proyecto</p>
     </div>
 </section>
+
 <section class="intro">
     <div class="container">
         <h2>Conoce más sobre AgroAlerta</h2>
@@ -129,21 +131,9 @@
         &copy; 2026 AgroAlerta
     </div>
 </footer>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const usuario = obtenerUsuario();
 
-    const loginItem = document.getElementById("loginItem");
-    const logoutItem = document.getElementById("logoutItem");
+<!-- JS -->
+<script src="../js/agroalerta.js"></script>
 
-    if (usuario) {
-        loginItem.style.display = "none";
-        logoutItem.style.display = "inline-block";
-    } else {
-        loginItem.style.display = "inline-block";
-        logoutItem.style.display = "none";
-    }
-});
-</script>
 </body>
 </html>

@@ -1,23 +1,43 @@
+// 🔐 PROTEGER RUTA
 protegerRuta();
 
-let usuario = obtenerUsuario(); // 🔐 usuario actual
-let animales = [];
+// -------------------------------
+// 🚀 EVENTOS (REEMPLAZA onclick, oninput, etc.)
+// -------------------------------
 
-/* CARGAR DATOS GUARDADOS */
+document.addEventListener("DOMContentLoaded", () => {
 
-window.onload = function(){
+    const btnRegistrar = document.getElementById("btnRegistrarAnimal");
+    const inputBuscar = document.getElementById("buscar");
+    const inputPeso = document.getElementById("peso");
+    const campoSexo = document.getElementById("sexo");
 
-let datosGuardados = localStorage.getItem("animales_" + usuario.usuario);
+    // Registrar animal
+    if (btnRegistrar) {
+        btnRegistrar.addEventListener("click", registrarAnimal);
+    }
 
-if(datosGuardados){
-animales = JSON.parse(datosGuardados);
-}
+    // Buscar
+    if (inputBuscar) {
+        inputBuscar.addEventListener("keyup", buscarAnimal);
+    }
 
-mostrarAnimales();
+    // Salud automática
+    if (inputPeso) {
+        inputPeso.addEventListener("input", actualizarSalud);
+    }
 
-}
+    // Cambio de propósito por sexo
+    if (campoSexo) {
+        campoSexo.addEventListener("change", actualizarProposito);
+    }
 
-/* REGISTRAR ANIMAL */
+});
+
+
+// -------------------------------
+// 🐄 REGISTRAR ANIMAL
+// -------------------------------
 
 function registrarAnimal(){
 
@@ -51,56 +71,34 @@ if(verificarPesoEdad(edad,peso)){
 return;
 }
 
-let animal = {
+// 🔥 SOLO VISUAL (luego lo conectamos a BD)
+agregarFilaTabla({
+id, raza, sexo, edad, peso, salud, estado, observaciones
+});
 
-id:id,
-raza:raza,
-sexo:sexo,
-edad:edad,
-peso:peso,
-salud:salud,
-estado:estado,
-observaciones:observaciones,
-historial:[peso]
-
-};
-
-animales.push(animal);
-
-localStorage.setItem("animales_" + usuario.usuario, JSON.stringify(animales));
-
-mostrarAnimales();
-
+// limpiar inputs
 document.getElementById("idAnimal").value="";
 document.getElementById("edad").value="";
 document.getElementById("peso").value="";
 document.getElementById("observaciones").value="";
 
+document.getElementById("salud").value="";
+
 }
 
-/* MOSTRAR ANIMALES */
 
-function mostrarAnimales(){
+// -------------------------------
+// 📋 TABLA
+// -------------------------------
+
+function agregarFilaTabla(animal){
 
 let tabla = document.getElementById("tablaAnimales");
 
-tabla.innerHTML = "";
-
-animales.forEach((animal,index)=>{
-
 let claseEstado = animal.estado === "vivo" ? "estado-vivo" : "estado-muerto";
 
-let botones = `
-<button onclick="actualizarPeso(${index})">Actualizar peso</button>
-<button onclick="verHistorial(${index})">Historial</button>
-<button onclick="cambiarEstado(${index})">Marcar fallecido</button>
-<button onclick="eliminarAnimal(${index})">Eliminar</button>
-`;
-
 tabla.innerHTML += `
-
 <tr>
-
 <td>${animal.id}</td>
 <td>${animal.raza}</td>
 <td>${animal.sexo}</td>
@@ -108,89 +106,60 @@ tabla.innerHTML += `
 <td>${animal.peso} kg</td>
 <td>${animal.salud}</td>
 <td class="${claseEstado}">${animal.estado}</td>
-<td>${botones}</td>
-
+<td>
+<button disabled>Actualizar</button>
+<button disabled>Historial</button>
+<button disabled>Estado</button>
+<button disabled>Eliminar</button>
+</td>
 </tr>
-
 `;
 
-});
-
 }
 
-/* ELIMINAR ANIMAL */
 
-function eliminarAnimal(index){
-
-animales.splice(index,1);
-
-localStorage.setItem("animales_" + usuario.usuario, JSON.stringify(animales));
-
-mostrarAnimales();
-
-}
-
-/* ACTUALIZAR PESO */
-
-function actualizarPeso(index){
-
-let nuevoPeso = Number(prompt("Nuevo peso (kg):"));
-
-if(nuevoPeso < 45 || nuevoPeso > 1000){
-alert("Peso inválido");
-return;
-}
-
-animales[index].peso = nuevoPeso;
-animales[index].historial.push(nuevoPeso);
-
-localStorage.setItem("animales_" + usuario.usuario, JSON.stringify(animales));
-
-mostrarAnimales();
-
-}
-
-/* BUSCAR ANIMAL */
+// -------------------------------
+// 🔍 BUSCAR
+// -------------------------------
 
 function buscarAnimal(){
 
 let filtro = document.getElementById("buscar").value.toLowerCase();
-
 let filas = document.querySelectorAll("#tablaAnimales tr");
 
 filas.forEach(fila=>{
-
 let texto = fila.innerText.toLowerCase();
-
 fila.style.display = texto.includes(filtro) ? "" : "none";
-
 });
 
 }
 
-/* CALCULAR SALUD */
+
+// -------------------------------
+// ❤️ SALUD
+// -------------------------------
 
 function calcularSalud(peso){
 
 if(peso >= 45 && peso <= 150){
 return "En tratamiento";
 }
-
 else if(peso >= 151 && peso <= 350){
 return "En observación";
 }
-
 else if(peso >= 351 && peso <= 800){
 return "Saludable";
 }
-
 else{
 return "Sobrepeso";
 }
 
 }
 
-/* VERIFICAR PESO SEGUN EDAD */
+
+// -------------------------------
+// ⚖ VALIDACIÓN
+// -------------------------------
 
 function verificarPesoEdad(edad,peso){
 
@@ -209,7 +178,7 @@ alerta = true;
 }
 
 if(alerta){
-alert("⚠ El peso no coincide con el peso esperado para la edad del animal");
+alert("⚠ El peso no coincide con el esperado para la edad");
 return true;
 }
 
@@ -217,12 +186,14 @@ return false;
 
 }
 
-/* ACTUALIZAR SALUD AUTOMATICA */
+
+// -------------------------------
+// 🔄 SALUD AUTOMÁTICA
+// -------------------------------
 
 function actualizarSalud(){
 
 let peso = Number(document.getElementById("peso").value);
-
 let campoSalud = document.getElementById("salud");
 
 if(!peso){
@@ -234,41 +205,10 @@ campoSalud.value = calcularSalud(peso);
 
 }
 
-/* CAMBIAR ESTADO */
 
-function cambiarEstado(index){
-
-let confirmar = confirm("¿Marcar este animal como fallecido?");
-
-if(confirmar){
-
-animales[index].estado = "muerto";
-
-localStorage.setItem("animales_" + usuario.usuario, JSON.stringify(animales));
-
-mostrarAnimales();
-
-}
-
-}
-
-/* VER HISTORIAL DE PESO */
-
-function verHistorial(index){
-
-let historial = animales[index].historial;
-
-alert("Historial de peso: " + historial.join(" kg -> ") + " kg");
-
-}
-
-/* CONTROL PROPOSITO SEGUN SEXO */
-
-let campoSexo = document.getElementById("sexo");
-
-if (campoSexo) {
-    campoSexo.addEventListener("change", actualizarProposito);
-}
+// -------------------------------
+// 🧠 PROPÓSITO SEGÚN SEXO
+// -------------------------------
 
 function actualizarProposito(){
 

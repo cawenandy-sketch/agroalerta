@@ -25,10 +25,9 @@
             <li><a href="area_animal.html">Área animal</a></li>
             <li><a href="biografia.html">Biografía</a></li>
 
-            <!-- 🔐 NUEVO -->
             <li id="loginItem"><a href="login.html">Login</a></li>
             <li id="logoutItem" style="display:none;">
-                <a href="#" onclick="logout()">Cerrar sesión</a>
+                <a href="#" id="btnLogout">Cerrar sesión</a>
             </li>
         </ul>
     </nav>
@@ -56,13 +55,13 @@
 
         <div class="features-grid-v2">
 
-            <div class="feature-card" onclick="window.location.href='agroalerta.html'">
+            <div class="feature-card" id="cardAgroalerta">
                 <div class="icon">🐂</div>
                 <h4>AgroAlerta</h4>
                 <p>Conoce el problema que buscamos resolver y cómo funciona AgroAlerta.</p>
             </div>
 
-            <div class="feature-card" onclick="window.location.href='area_animal.html'">
+            <div class="feature-card" id="cardAreaAnimal">
                 <div class="icon">🐾</div>
                 <h4>Registro ganadero</h4>
                 <p>Bienestar y registro de su ganado.</p>
@@ -74,7 +73,7 @@
                 <p>Información básica para prevenir.</p>
             </div>
 
-            <div class="feature-card" onclick="window.location.href='biografia.html'">
+            <div class="feature-card" id="cardBiografia">
                 <div class="icon">📖</div>
                 <h4>Biografía</h4>
                 <p>Descubre la historia detrás del proyecto y por qué fue creado.</p>
@@ -117,27 +116,8 @@
     </div>
 </footer>
 
-<!-- 🔧 Scripts -->
+<!-- 🔧 JS EXTERNO -->
 <script src="../js/agroalerta.js"></script>
-<script src="../js/inicio.js"></script>
-
-<!-- 🔐 CONTROL LOGIN / LOGOUT -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const usuario = obtenerUsuario();
-
-    const loginItem = document.getElementById("loginItem");
-    const logoutItem = document.getElementById("logoutItem");
-
-    if (usuario) {
-        loginItem.style.display = "none";
-        logoutItem.style.display = "inline-block";
-    } else {
-        loginItem.style.display = "inline-block";
-        logoutItem.style.display = "none";
-    }
-});
-</script>
 
 </body>
 </html>

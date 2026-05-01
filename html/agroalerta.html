@@ -8,8 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/agroalerta.css">
 <link rel="stylesheet" href="../css/responsive.css">
-
-
 </head>
 
 <body>
@@ -17,7 +15,6 @@
 <header>
     <div class="logo-container">
         <img src="../img/logo.jpeg" alt="Logo" class="nav-logo-img">
-        
         <span class="logo-text">AgroAlerta</span>
     </div>
 
@@ -27,15 +24,15 @@
             <li><a class="active" href="#">AgroAlerta</a></li>
             <li><a href="area_animal.html">Área animal</a></li>
             <li><a href="biografia.html">Biografia</a></li>
-            <!-- 🔐 NUEVO -->
+
+            <!-- 🔐 LOGIN / LOGOUT -->
             <li id="loginItem"><a href="login.html">Login</a></li>
             <li id="logoutItem" style="display:none;">
-                <a href="#" onclick="logout()">Cerrar sesión</a>
+                <a href="#" id="btnLogout">Cerrar sesión</a>
             </li>
         </ul>
     </nav>
 </header>
-
 
 <!-- HERO -->
 <section class="hero">
@@ -45,7 +42,6 @@
     </div>
 </section>
 
-
 <!-- INFO -->
 <section class="info-section">
     <div class="container">
@@ -53,13 +49,11 @@
     </div>
 </section>
 
-
 <!-- TARJETAS -->
 <section class="container section-padding">
 
 <div class="features-grid-v2">
 
-    <!-- QUE ES -->
     <div class="feature-card">
         <div class="icon">🐂</div>
         <h4>¿Qué es AgroAlerta?</h4>
@@ -69,8 +63,7 @@
         </p>
     </div>
 
-    <!-- PROBLEMA -->
-     <div class="feature-card">
+    <div class="feature-card">
         <div class="icon">🎯</div>
         <h4>Objetivo</h4>
         <p>
@@ -87,23 +80,18 @@
         </p>
     </div>
 
-    <!-- SOLUCION -->
     <div class="feature-card">
         <div class="icon">✔</div>
         <h4>Solución</h4>
         <p>
-       AgroAlerta centraliza la información del ganado en una aplicación web simple e intuitiva, permitiendo registrar y consultar datos de forma organizada. 
-De esta manera, el productor puede llevar un mejor control de su ganado, reducir errores y facilitar la gestión diaria.
+        AgroAlerta centraliza la información del ganado en una aplicación web simple e intuitiva, permitiendo registrar y consultar datos de forma organizada. 
+        De esta manera, el productor puede llevar un mejor control de su ganado, reducir errores y facilitar la gestión diaria.
         </p>
-    </div>
-
-    
     </div>
 
 </div>
 
 </section>
-
 
 <footer>
     <div class="footer-links">
@@ -115,21 +103,9 @@ De esta manera, el productor puede llevar un mejor control de su ganado, reducir
         &copy; 2026 AgroAlerta
     </div>
 </footer>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const usuario = obtenerUsuario();
 
-    const loginItem = document.getElementById("loginItem");
-    const logoutItem = document.getElementById("logoutItem");
+<!-- JS -->
+<script src="../js/agroalerta.js"></script>
 
-    if (usuario) {
-        loginItem.style.display = "none";
-        logoutItem.style.display = "inline-block";
-    } else {
-        loginItem.style.display = "inline-block";
-        logoutItem.style.display = "none";
-    }
-});
-</script>
 </body>
 </html>

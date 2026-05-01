@@ -33,19 +33,17 @@
             <!-- 🔐 LOGIN / LOGOUT -->
             <li id="loginItem"><a href="login.html">Login</a></li>
             <li id="logoutItem" style="display:none;">
-                <a href="#" onclick="logout()">Cerrar sesión</a>
+                <a href="#" id="btnLogout">Cerrar sesión</a>
             </li>
         </ul>
     </nav>
 </header>
 
-<!-- HERO SIMPLE DEL MÓDULO -->
 <section class="hero-modulo">
     <h1>Área Animal</h1>
     <p id="mensajeUsuario">Gestión inteligente del ganado</p>
 </section>
 
-<!-- CONTENIDO -->
 <section class="container section-padding">
 
 <h2 class="titulo-seccion">Registro Ganadero</h2>
@@ -70,7 +68,7 @@
 
 <input id="edad" type="number" placeholder="Edad">
 
-<input id="peso" type="number" placeholder="Peso (kg)" min="45" max="1000" oninput="actualizarSalud()">
+<input id="peso" type="number" placeholder="Peso (kg)" min="45" max="1000">
 
 <select id="proposito">
 <option>Producción de leche</option>
@@ -82,7 +80,7 @@
 
 <textarea id="observaciones" placeholder="Observaciones"></textarea>
 
-<button onclick="registrarAnimal()">Registrar Animal</button>
+<button id="btnRegistrarAnimal">Registrar Animal</button>
 
 </div>
 
@@ -108,7 +106,7 @@ Valores aproximados para razas comunes en Uruguay como Angus y Hereford.
 </div>
 
 <div class="busqueda">
-<input id="buscar" type="text" placeholder="Buscar animal..." onkeyup="buscarAnimal()">
+<input id="buscar" type="text" placeholder="Buscar animal...">
 </div>
 
 <h2 class="titulo-seccion">Animales Registrados</h2>
@@ -144,29 +142,9 @@ Valores aproximados para razas comunes en Uruguay como Angus y Hereford.
     </div>
 </footer>
 
-<!-- 🔧 Scripts -->
+<!-- JS -->
 <script src="../js/agroalerta.js"></script>
 <script src="../js/registro_animal.js"></script>
-
-<!-- 🔐 CONTROL DE USUARIO -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const usuario = obtenerUsuario();
-
-    const loginItem = document.getElementById("loginItem");
-    const logoutItem = document.getElementById("logoutItem");
-    const mensaje = document.getElementById("mensajeUsuario");
-
-    if (usuario) {
-        loginItem.style.display = "none";
-        logoutItem.style.display = "inline-block";
-        mensaje.textContent = "Bienvenido, " + usuario.usuario;
-    } else {
-        loginItem.style.display = "inline-block";
-        logoutItem.style.display = "none";
-    }
-});
-</script>
 
 </body>
 </html>
