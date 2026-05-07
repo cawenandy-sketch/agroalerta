@@ -1,23 +1,18 @@
-// -------------------------------
-// 🔐 SISTEMA DE USUARIO
-// -------------------------------
-
-// Obtener usuario activo
 function obtenerUsuario() {
   return JSON.parse(localStorage.getItem("usuarioActivo"));
 }
 
-// Saber si está logueado
+
 function estaLogueado() {
   return obtenerUsuario() !== null;
 }
 
-// Saber si es invitado
+
 function esInvitado() {
   return !estaLogueado();
 }
 
-// Proteger páginas
+
 function protegerRuta() {
   if (esInvitado()) {
     alert("Debes iniciar sesión");
@@ -25,15 +20,13 @@ function protegerRuta() {
   }
 }
 
-// Cerrar sesión
+
 function logout() {
   localStorage.removeItem("usuarioActivo");
   window.location.href = "inicio.html";
 }
 
-// -------------------------------
-// 🔄 CONTROL NAVBAR + EVENTOS
-// -------------------------------
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = obtenerUsuario();
@@ -42,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutItem = document.getElementById("logoutItem");
   const btnLogout = document.getElementById("btnLogout");
 
-  // 🔐 Navbar
+  
   if (loginItem && logoutItem) {
     if (usuario) {
       loginItem.style.display = "none";
@@ -53,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 🚪 Botón logout (sin onclick en HTML)
+  
   if (btnLogout) {
     btnLogout.addEventListener("click", (e) => {
       e.preventDefault();
@@ -61,9 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // -------------------------------
-  // 🧭 NAVEGACIÓN DE CARDS
-  // -------------------------------
 
   const cardAgroalerta = document.getElementById("cardAgroalerta");
   const cardAreaAnimal = document.getElementById("cardAreaAnimal");
@@ -89,9 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-// -------------------------------
-// 📢 FUNCIONES GENERALES
-// -------------------------------
+
 
 function verProtocolo() {
   alert("PROTOCOLO SANITARIO:\n\n1 Revisar animales infectados\n2 Aislar ganado enfermo\n3 Contactar veterinario");

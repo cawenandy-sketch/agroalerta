@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Registro Usuario</title>
 
 <link rel="stylesheet" href="../css/login.css">
@@ -13,15 +16,49 @@
 <body>
 
 <div class="card">
+
     <img src="../img/logo.jpeg" alt="Logo" class="logo-login">
 
     <h2>Crea tu Cuenta de Usuario</h2>
 
-    <input type="text" id="usuario" placeholder="Usuario">
-    <input type="password" id="password" placeholder="Contraseña">
+    <input 
+        type="text" 
+        id="usuario" 
+        placeholder="Usuario"
+        maxlength="50"
+    >
 
-    <!-- 🔥 SIN onclick -->
-    <button type="button" id="btnRegistro">Registrarme</button>
+    <input 
+        type="password" 
+        id="password" 
+        placeholder="Contraseña"
+        maxlength="50"
+    >
+
+    <input 
+        type="text" 
+        id="cedula" 
+        placeholder="Cédula (8 dígitos)"
+        maxlength="8"
+    >
+
+    <input 
+        type="text" 
+        id="celular" 
+        placeholder="Celular (9 dígitos)"
+        maxlength="9"
+    >
+
+    <input 
+        type="text" 
+        id="licose" 
+        placeholder="LICOSE (12 caracteres)"
+        maxlength="12"
+    >
+
+    <button type="button" id="btnRegistro">
+        Registrarme
+    </button>
 
     <div class="link">
         ¿Ya tienes cuenta?

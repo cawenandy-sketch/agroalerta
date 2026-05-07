@@ -17,14 +17,14 @@ body {
     line-height: 1.6;
 }
 
-/* CONTENEDOR */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* HEADER */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -41,7 +41,7 @@ header {
 }
 
 .nav-logo-img {
-    height: 40px; /* más grande */
+    height: 40px; 
     width: auto;
 }
 
@@ -66,12 +66,12 @@ nav a {
     transition: 0.3s;
 }
 
-/* Hover */
+
 nav a:hover {
     color: var(--primary);
 }
 
-/* Línea animada */
+
 nav a::after {
     content: "";
     position: absolute;
@@ -87,7 +87,7 @@ nav a:hover::after {
     width: 100%;
 }
 
-/* Activo */
+
 nav a.active {
     color: var(--primary);
     font-weight: 600;
@@ -97,7 +97,7 @@ nav a.active::after {
     width: 100%;
 }
 
-/* HERO */
+
 .hero {
     height: 70vh;
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
@@ -119,14 +119,14 @@ nav a.active::after {
     font-size: 1.1rem;
 }
 
-/* INFO */
+
 .info-section {
     padding: 60px 0;
     text-align: center;
     background: var(--bg-light);
 }
 
-/* TARJETAS */
+
 .section-padding {
     padding: 60px 20px;
 }
@@ -194,7 +194,7 @@ nav a.active::after {
     font-size: 1.2rem;
 }
 
-/* FOOTER */
+
 footer {
     padding: 40px 5%;
     border-top: 1px solid #eee;

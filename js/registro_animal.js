@@ -1,9 +1,7 @@
-// 🔐 PROTEGER RUTA
+
 protegerRuta();
 
-// -------------------------------
-// 🚀 EVENTOS (REEMPLAZA onclick, oninput, etc.)
-// -------------------------------
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -12,22 +10,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputPeso = document.getElementById("peso");
     const campoSexo = document.getElementById("sexo");
 
-    // Registrar animal
+    
     if (btnRegistrar) {
         btnRegistrar.addEventListener("click", registrarAnimal);
     }
 
-    // Buscar
+    
     if (inputBuscar) {
         inputBuscar.addEventListener("keyup", buscarAnimal);
     }
 
-    // Salud automática
+    
     if (inputPeso) {
         inputPeso.addEventListener("input", actualizarSalud);
     }
 
-    // Cambio de propósito por sexo
+    
     if (campoSexo) {
         campoSexo.addEventListener("change", actualizarProposito);
     }
@@ -35,9 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// -------------------------------
-// 🐄 REGISTRAR ANIMAL
-// -------------------------------
+
 
 function registrarAnimal(){
 
@@ -71,12 +67,12 @@ if(verificarPesoEdad(edad,peso)){
 return;
 }
 
-// 🔥 SOLO VISUAL (luego lo conectamos a BD)
+
 agregarFilaTabla({
 id, raza, sexo, edad, peso, salud, estado, observaciones
 });
 
-// limpiar inputs
+
 document.getElementById("idAnimal").value="";
 document.getElementById("edad").value="";
 document.getElementById("peso").value="";
@@ -87,9 +83,7 @@ document.getElementById("salud").value="";
 }
 
 
-// -------------------------------
-// 📋 TABLA
-// -------------------------------
+
 
 function agregarFilaTabla(animal){
 
@@ -118,9 +112,7 @@ tabla.innerHTML += `
 }
 
 
-// -------------------------------
-// 🔍 BUSCAR
-// -------------------------------
+
 
 function buscarAnimal(){
 
@@ -135,9 +127,7 @@ fila.style.display = texto.includes(filtro) ? "" : "none";
 }
 
 
-// -------------------------------
-// ❤️ SALUD
-// -------------------------------
+
 
 function calcularSalud(peso){
 
@@ -157,9 +147,7 @@ return "Sobrepeso";
 }
 
 
-// -------------------------------
-// ⚖ VALIDACIÓN
-// -------------------------------
+
 
 function verificarPesoEdad(edad,peso){
 
@@ -187,9 +175,7 @@ return false;
 }
 
 
-// -------------------------------
-// 🔄 SALUD AUTOMÁTICA
-// -------------------------------
+
 
 function actualizarSalud(){
 
@@ -206,9 +192,7 @@ campoSalud.value = calcularSalud(peso);
 }
 
 
-// -------------------------------
-// 🧠 PROPÓSITO SEGÚN SEXO
-// -------------------------------
+
 
 function actualizarProposito(){
 

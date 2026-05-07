@@ -17,14 +17,14 @@ body {
     line-height: 1.6;
 }
 
-/* CONTENEDOR */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* HEADER */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -66,12 +66,12 @@ nav a {
     transition: 0.3s;
 }
 
-/* Hover */
+
 nav a:hover {
     color: var(--primary);
 }
 
-/* Línea animada */
+
 nav a::after {
     content: "";
     position: absolute;
@@ -87,7 +87,7 @@ nav a:hover::after {
     width: 100%;
 }
 
-/* Activo */
+
 nav a.active {
     color: var(--primary);
     font-weight: 600;
@@ -96,7 +96,7 @@ nav a.active {
 nav a.active::after {
     width: 100%;
 }
-/* HERO (IMAGEN VACA) */
+
 .hero {
     height: 70vh;
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
@@ -119,19 +119,19 @@ nav a.active::after {
     font-size: 1.1rem;
 }
 
-/* CONTENIDO */
+
 .section-padding {
     padding: 60px 20px;
 }
 
-/* GRID */
+
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
 }
 
-/* TARJETAS */
+
 .card {
     background: white;
     padding: 30px;
@@ -153,7 +153,7 @@ nav a.active::after {
     font-size: 1.2rem;
 }
 
-/* FOOTER */
+
 footer {
     padding: 40px 5%;
     border-top: 1px solid #eee;

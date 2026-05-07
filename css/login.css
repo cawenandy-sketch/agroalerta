@@ -6,7 +6,7 @@
 }
 
 body {
-    /* Fondo con tu imagen de campo */
+    
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/campo.jpg') center/cover no-repeat;
     font-family: 'Inter', Arial, sans-serif;
     display: flex;
@@ -31,7 +31,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Contenedor para tu logo dentro de la tarjeta */
+
 .logo-login {
     width: 80px;
     height: 80px;
@@ -116,53 +116,52 @@ button:hover {
 }
 
 .link a:hover { text-decoration: underline; }
-/* En tu estilos.css busca .logo-login y asegúrate de que tenga esto */
+
 .logo-login {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    margin-top: 10px; /* Espacio extra arriba si lo necesitas */
+    margin-top: 10px; 
     margin-bottom: 15px;
     border: 2px solid var(--primary);
-    object-fit: cover; /* Para que no se deforme la imagen */
+    object-fit: cover; 
 }
-/* Estilo base para los enlaces del menú */
-/* Estilo base para los enlaces del menú */
+
 nav a {
     text-decoration: none;
     color: var(--dark);
     font-weight: 500;
     font-size: 0.95rem;
-    position: relative; /* Necesario para posicionar la línea debajo */
+    position: relative; 
     padding: 5px 0;
     transition: color 0.3s ease;
 }
 
-/* El "subrayado" que aparece al pasar el mouse */
+
 nav a::after {
     content: '';
     position: absolute;
     width: 100%;
-    transform: scaleX(0); /* Empieza invisible (escala 0) */
+    transform: scaleX(0); 
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: var(--primary); /* El verde de AgroAlerta */
+    background-color: var(--primary); 
     transform-origin: bottom right;
     transition: transform 0.3s ease-out;
 }
 
-/* Animación al pasar el mouse (Hover) */
+
 nav a:hover {
     color: var(--primary);
 }
 
 nav a:hover::after {
-    transform: scaleX(1); /* La línea se expande a tamaño completo */
+    transform: scaleX(1); 
     transform-origin: bottom left;
 }
 
-/* Efecto de "pulsación" al mantener presionado (Active) */
+
 nav a:active {
     transform: scale(0.95);
     transition: 0.1s;
