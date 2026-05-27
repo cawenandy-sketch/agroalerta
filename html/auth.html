@@ -1,0 +1,331 @@
+<!-- auth.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AgroAlerta - Acceso</title>
+
+<link rel="stylesheet" href="../css/auth.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="auth-container">
+
+<div class="auth-card">
+
+<div class="logo-area">
+
+<img src="../img/logo.jpeg" class="logo">
+
+<h1>AgroAlerta</h1>
+
+<p>Sistema de gestión ganadera</p>
+
+</div>
+
+<!-- TABS -->
+
+<div class="tabs">
+
+<button class="tab active" id="tabLogin">
+Iniciar sesión
+</button>
+
+<button class="tab" id="tabRegistro">
+Registrarse
+</button>
+
+</div>
+
+<!-- LOGIN -->
+
+<div id="loginForm" class="form-area activeForm">
+
+<div class="input-group">
+
+<label>Correo electrónico</label>
+
+<input
+type="text"
+id="loginUsuario"
+placeholder="usuario@email.com"
+>
+
+</div>
+
+<div class="input-group">
+
+<label>Contraseña</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="loginPassword"
+placeholder="Ingresa tu contraseña"
+>
+
+<button
+type="button"
+class="showPass"
+onclick="togglePassword('loginPassword')"
+>
+
+👁
+
+</button>
+
+</div>
+
+</div>
+
+<div class="remember">
+
+<label>
+
+<input type="checkbox">
+
+Recordar sesión
+
+</label>
+
+</div>
+
+<button class="main-btn" id="btnLogin">
+Ingresar al sistema
+</button>
+
+<button class="guest-btn" id="btnInvitado">
+Entrar como invitado
+</button>
+
+<p class="bottom-text">
+
+¿No tienes cuenta?
+
+<span id="goRegister">
+Regístrate aquí
+</span>
+
+</p>
+
+</div>
+
+<!-- REGISTRO -->
+
+<div id="registroForm" class="form-area">
+
+<div class="tipo-usuario">
+
+<div class="tipo-card activeTipo" data-tipo="ganadero">
+
+<h3>Ganadero</h3>
+
+<p>Gestión de animales y producción</p>
+
+</div>
+
+<div class="tipo-card" data-tipo="administrador">
+
+<h3>Administrador</h3>
+
+<p>Control general del sistema</p>
+
+</div>
+
+</div>
+
+<input type="hidden" id="tipoUsuario" value="ganadero">
+
+<div class="double-input">
+
+<div class="input-group">
+
+<label>Nombre</label>
+
+<input
+type="text"
+id="nombre"
+placeholder="Juan"
+>
+
+</div>
+
+<div class="input-group">
+
+<label>Apellido</label>
+
+<input
+type="text"
+id="apellido"
+placeholder="Pérez"
+>
+
+</div>
+
+</div>
+
+<div class="input-group">
+
+<label>Correo electrónico</label>
+
+<input
+type="text"
+id="usuario"
+placeholder="usuario@email.com"
+>
+
+</div>
+
+<div class="double-input">
+
+<div class="input-group">
+
+<label>Cédula</label>
+
+<input
+type="text"
+id="cedula"
+placeholder="12345678"
+maxlength="8"
+>
+
+</div>
+
+<div class="input-group">
+
+<label>Celular</label>
+
+<input
+type="text"
+id="celular"
+placeholder="099123456"
+maxlength="9"
+>
+
+</div>
+
+</div>
+
+<div class="input-group">
+
+<label>LICOSE</label>
+
+<input
+type="text"
+id="licose"
+placeholder="ABC123456789"
+maxlength="12"
+>
+
+</div>
+
+<div
+class="input-group hidden"
+id="adminCodeBox"
+>
+
+<label>Código administrador</label>
+
+<input
+type="password"
+id="codigoAdmin"
+placeholder="Código especial"
+>
+
+</div>
+
+<div class="double-input">
+
+<div class="input-group">
+
+<label>Contraseña</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+placeholder="Mínimo 8 caracteres"
+>
+
+<button
+type="button"
+class="showPass"
+onclick="togglePassword('password')"
+>
+
+👁
+
+</button>
+
+</div>
+
+<div id="passwordStrength"></div>
+
+</div>
+
+<div class="input-group">
+
+<label>Confirmar contraseña</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Repite tu contraseña"
+>
+
+<button
+type="button"
+class="showPass"
+onclick="togglePassword('confirmPassword')"
+>
+
+👁
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="main-btn" id="btnRegistro">
+Crear cuenta
+</button>
+
+<p class="bottom-text">
+
+¿Ya tienes cuenta?
+
+<span id="goLogin">
+Inicia sesión
+</span>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../js/login.js"></script>
+
+</body>
+</html>

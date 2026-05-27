@@ -1,121 +1,394 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroAlerta - Gestión Inteligente</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/inicio.css">
-    
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AgroAlerta | Gestión Ganadera Inteligente</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/inicio.css">
+
 </head>
 
 <body>
 
-<header>
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
+
+<header class="header">
+
     <div class="logo-container">
-        <img src="../img/logo.jpeg" alt="Logo AgroAlerta" class="nav-logo-img">
-        <span class="logo-text">AgroAlerta</span>
+
+        <img src="../img/logo.jpeg"
+        alt="Logo AgroAlerta"
+        class="nav-logo-img">
+
+        <span class="logo-text">
+            AgroAlerta
+        </span>
+
     </div>
 
     <nav>
-        <ul>
-            <li><a href="#" class="active">Inicio</a></li>
-            <li><a href="agroalerta.html">AgroAlerta</a></li>
-            <li><a href="area_animal.html">Área animal</a></li>
-            <li><a href="biografia.html">Biografía</a></li>
 
-            <li id="loginItem"><a href="login.html">Login</a></li>
-            <li id="logoutItem" style="display:none;">
-                <a href="#" id="btnLogout">Cerrar sesión</a>
+        <ul>
+
+            <li>
+                <a href="#" class="active">
+                    Inicio
+                </a>
             </li>
+
+            <li>
+                <a href="agroalerta.html">
+                    AgroAlerta
+                </a>
+            </li>
+
+            <li>
+                <a href="area_animal.html">
+                    Área animal
+                </a>
+            </li>
+
+            <li>
+                <a href="biografia.html">
+                    Biografía
+                </a>
+            </li>
+
+            <li id="loginItem">
+                <a href="auth.html" class="btn-login">
+                    Iniciar sesión
+                </a>
+            </li>
+
+            <li id="logoutItem" style="display:none;">
+                <a href="#" id="btnLogout" class="btn-login">
+                    Cerrar sesión
+                </a>
+            </li>
+
         </ul>
+
     </nav>
+
 </header>
 
+<!-- ========================= -->
+<!-- HERO -->
+<!-- ========================= -->
+
 <section class="hero">
-    <h1>Bienvenido a<br>AgroAlerta</h1>
-    <p>La información que el campo necesita.</p>
-    <a href="agroalerta.html" class="btn-primary">Saber más</a>
-</section>
 
-<section class="info-section">
-    <div class="container">
-        <h2>Información</h2>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            Gestión rural moderna
+        </span>
+
+        <h1>
+            Tecnología inteligente
+            para el control ganadero
+        </h1>
+
         <p>
-            AgroAlerta es una aplicación web que funciona como guía de campo para el peón rural,
-            permitiendo gestionar y controlar el ganado de forma simple y eficiente.
+            AgroAlerta permite registrar, organizar y monitorear
+            información clave del ganado de manera simple,
+            rápida y accesible desde cualquier dispositivo.
         </p>
+
+        <div class="hero-buttons">
+
+            <a href="auth.html" class="btn-primary">
+                Comenzar ahora
+            </a>
+
+            <a href="agroalerta.html" class="btn-secondary">
+                Saber más
+            </a>
+
+        </div>
+
     </div>
+
 </section>
 
-<section class="section-padding">
-    <div class="container">
-        <h3 class="section-title">Explorar AgroAlerta</h3>
+<!-- ========================= -->
+<!-- STATS -->
+<!-- ========================= -->
 
-        <div class="features-grid-v2">
+<section class="stats-section">
+
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <h3>24/7</h3>
+
+                <p>Acceso disponible</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>100%</h3>
+
+                <p>Digital</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>+500</h3>
+
+                <p>Registros ganaderos</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Seguro</h3>
+
+                <p>Datos protegidos</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- SERVICIOS -->
+<!-- ========================= -->
+
+<section class="services-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                Funcionalidades
+            </span>
+
+            <h2>
+                ¿Qué puede hacer AgroAlerta?
+            </h2>
+
+            <p>
+                Una plataforma diseñada para facilitar la gestión
+                del trabajo rural y mejorar el control del ganado.
+            </p>
+
+        </div>
+
+        <div class="features-grid">
 
             <div class="feature-card" id="cardAgroalerta">
-                <div class="icon">🐂</div>
-                <h4>AgroAlerta</h4>
-                <p>Conoce el problema que buscamos resolver y cómo funciona AgroAlerta.</p>
+
+                <div class="feature-icon">
+                    🐂
+                </div>
+
+                <h3>Control Ganadero</h3>
+
+                <p>
+                    Registro y seguimiento digital
+                    de animales y actividad rural.
+                </p>
+
             </div>
 
             <div class="feature-card" id="cardAreaAnimal">
-                <div class="icon">🐾</div>
-                <h4>Registro ganadero</h4>
-                <p>Bienestar y registro de su ganado.</p>
+
+                <div class="feature-icon">
+                    🐾
+                </div>
+
+                <h3>Área Animal</h3>
+
+                <p>
+                    Gestión de información sanitaria,
+                    estado y control del ganado.
+                </p>
+
             </div>
 
             <div class="feature-card">
-                <div class="icon">💉</div>
-                <h4>Vacunas y enfermedades</h4>
-                <p>Información básica para prevenir.</p>
+
+                <div class="feature-icon">
+                    💉
+                </div>
+
+                <h3>Alertas Sanitarias</h3>
+
+                <p>
+                    Información preventiva sobre
+                    enfermedades y protocolos rurales.
+                </p>
+
             </div>
 
             <div class="feature-card" id="cardBiografia">
-                <div class="icon">📖</div>
-                <h4>Biografía</h4>
-                <p>Descubre la historia detrás del proyecto y por qué fue creado.</p>
-            </div>
 
-        </div>
-    </div>
-</section>
-
-<section class="bio-section">
-    <div class="container">
-        <div class="bio-card-horizontal">
-            <img src="../img/logo.jpeg" alt="Fundadores de AgroAlerta" class="founder-img-large">
-
-            <div class="bio-text-content">
-                <h3>Biografía</h3>
-
-                <div class="founder-info">
-                    <strong>Fundado por Cawen, Barrios y Sosa</strong><br>
-                    <span>Innovación agropecuaria</span>
+                <div class="feature-icon">
+                    📖
                 </div>
 
-                <p class="bio-text">
-                    Dedicados a mejorar la gestión en la industria agropecuaria a través de soluciones
-                    digitales escalables y sostenibles, uniendo tecnología y tradición.
+                <h3>Nuestro Proyecto</h3>
+
+                <p>
+                    Conoce la historia y el propósito
+                    detrás de AgroAlerta.
                 </p>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
+<!-- ========================= -->
+<!-- ABOUT -->
+<!-- ========================= -->
+
+<section class="about-section">
+
+    <div class="container about-container">
+
+        <div class="about-image">
+
+            <img src="../img/logo.jpeg"
+            alt="AgroAlerta">
+
+        </div>
+
+        <div class="about-content">
+
+            <span class="section-tag">
+                Sobre nosotros
+            </span>
+
+            <h2>
+                Innovación tecnológica
+                aplicada al campo
+            </h2>
+
+            <p>
+                AgroAlerta nace como una solución digital
+                orientada al sector agropecuario, buscando
+                facilitar la organización y el monitoreo
+                del ganado mediante herramientas simples,
+                modernas y accesibles.
+            </p>
+
+            <p>
+                El proyecto combina tecnología y gestión rural,
+                promoviendo una administración más eficiente
+                y ordenada del trabajo en el campo.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- CTA -->
+<!-- ========================= -->
+
+<section class="cta-section">
+
+    <div class="container">
+
+        <div class="cta-box">
+
+            <h2>
+                Moderniza tu gestión ganadera
+            </h2>
+
+            <p>
+                Accede a AgroAlerta y comienza
+                a organizar toda tu información rural.
+            </p>
+
+            <a href="auth.html" class="btn-primary">
+                Crear cuenta
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
 <footer>
-    <div>
-        <a href="#">Política de privacidad</a>
-        <a href="#">Términos de servicio</a>
+
+    <div class="footer-container">
+
+        <div>
+
+            <h3>AgroAlerta</h3>
+
+            <p>
+                Plataforma de gestión rural y control ganadero.
+            </p>
+
+        </div>
+
+        <div>
+
+            <h4>Navegación</h4>
+
+            <a href="inicio.html">Inicio</a>
+
+            <a href="agroalerta.html">AgroAlerta</a>
+
+            <a href="area_animal.html">Área animal</a>
+
+        </div>
+
+        <div>
+
+            <h4>Proyecto</h4>
+
+            <a href="biografia.html">Biografía</a>
+
+            <a href="#">Soporte</a>
+
+            <a href="#">Privacidad</a>
+
+        </div>
+
     </div>
 
-    <div>
-        &copy; 2026 AgroAlerta
+    <div class="footer-bottom">
+
+        © 2026 AgroAlerta - Todos los derechos reservados
+
     </div>
+
 </footer>
-
 
 <script src="../js/agroalerta.js"></script>
 

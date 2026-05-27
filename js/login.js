@@ -1,268 +1,377 @@
-// -------------------------------
-// 🔐 LOGIN
-// -------------------------------
+// auth.js
 
-function login() {
+// --------------------
+// TABS
+// --------------------
 
-    const user = document.getElementById("usuario").value.trim();
-    const pass = document.getElementById("password").value.trim();
+const tabLogin = document.getElementById("tabLogin");
 
-    if (!user || !pass) {
-        alert("Completa todos los campos");
-        return;
-    }
+const tabRegistro = document.getElementById("tabRegistro");
 
-    fetch("http://localhost/agroalerta/php/login.php", {
-        method: "POST",
+const loginForm = document.getElementById("loginForm");
 
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
+const registroForm = document.getElementById("registroForm");
 
-        body:
-        `usuario=${encodeURIComponent(user)}
-        &password=${encodeURIComponent(pass)}`
+tabLogin.addEventListener("click",()=>{
 
-    })
+tabLogin.classList.add("active");
+tabRegistro.classList.remove("active");
 
-    .then(res => res.text())
+loginForm.classList.add("activeForm");
+registroForm.classList.remove("activeForm");
 
-    .then(data => {
+});
 
-        console.log("LOGIN RESPUESTA:", data);
+tabRegistro.addEventListener("click",()=>{
 
-        if (data.trim() === "ok") {
+tabRegistro.classList.add("active");
+tabLogin.classList.remove("active");
 
-            localStorage.setItem(
-                "usuarioActivo",
-                JSON.stringify({ usuario: user })
-            );
+registroForm.classList.add("activeForm");
+loginForm.classList.remove("activeForm");
 
-            alert("Bienvenido " + user);
+});
 
-            window.location.href = "inicio.html";
+document.getElementById("goRegister")
+.addEventListener("click",()=>{
 
-        } else {
+tabRegistro.click();
 
-            alert("Usuario o contraseña incorrectos");
+});
 
-        }
+document.getElementById("goLogin")
+.addEventListener("click",()=>{
 
-    });
+tabLogin.click();
 
-}
+});
 
+// --------------------
+// TIPO USUARIO
+// --------------------
 
-// -------------------------------
-// 📝 VALIDACIONES
-// -------------------------------
+const tipoCards =
+document.querySelectorAll(".tipo-card");
 
-// 🔑 contraseña segura
-function validarPassword(pass) {
+tipoCards.forEach(card=>{
 
-    // mínimo 8
-    // una mayúscula
-    // un símbolo
+card.addEventListener("click",()=>{
 
-    const regex = /^(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+tipoCards.forEach(c=>{
 
-    return regex.test(pass);
+c.classList.remove("activeTipo");
 
-}
+});
 
+card.classList.add("activeTipo");
 
-// 🪪 cédula
-function validarCedula(cedula) {
+const tipo =
+card.dataset.tipo;
 
-    const regex = /^[0-9]{8}$/;
+document.getElementById("tipoUsuario").value = tipo;
 
-    return regex.test(cedula);
+const adminBox =
+document.getElementById("adminCodeBox");
 
-}
+if(tipo === "administrador"){
 
+adminBox.classList.remove("hidden");
 
-// 📱 celular
-function validarCelular(celular) {
+}else{
 
-    const regex = /^[0-9]{9}$/;
-
-    return regex.test(celular);
+adminBox.classList.add("hidden");
 
 }
 
+});
 
-// 🐄 LICOSE
-function validarLicose(licose) {
+});
 
-    const regex = /^[a-zA-Z0-9]{12}$/;
+// --------------------
+// PASSWORD
+// --------------------
 
-    return regex.test(licose);
+function togglePassword(id){
 
-}
+const input =
+document.getElementById(id);
 
-
-// -------------------------------
-// 📝 REGISTRO
-// -------------------------------
-
-function registrarUsuario() {
-
-    const user = document.getElementById("usuario").value.trim();
-
-    const pass = document.getElementById("password").value.trim();
-
-    const cedula = document.getElementById("cedula").value.trim();
-
-    const celular = document.getElementById("celular").value.trim();
-
-    const licose = document.getElementById("licose").value.trim();
-
-
-    // 🔥 campos vacíos
-
-    if (!user || !pass || !cedula || !celular || !licose) {
-
-        alert("Completa todos los campos");
-
-        return;
-
-    }
-
-
-    // 🔥 validaciones
-
-    if (!validarPassword(pass)) {
-
-        alert(
-        "La contraseña debe tener mínimo 8 caracteres, una mayúscula y un símbolo"
-        );
-
-        return;
-
-    }
-
-
-    if (!validarCedula(cedula)) {
-
-        alert("La cédula debe tener exactamente 8 números");
-
-        return;
-
-    }
-
-
-    if (!validarCelular(celular)) {
-
-        alert("El celular debe tener exactamente 9 números");
-
-        return;
-
-    }
-
-
-    if (!validarLicose(licose)) {
-
-        alert("El LICOSE debe tener 12 caracteres alfanuméricos");
-
-        return;
-
-    }
-
-
-    // 🔥 envío al PHP
-
-    fetch("http://localhost/agroalerta/php/registro.php", {
-
-        method: "POST",
-
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-
-        body:
-        `usuario=${encodeURIComponent(user)}
-        &password=${encodeURIComponent(pass)}
-        &cedula=${encodeURIComponent(cedula)}
-        &celular=${encodeURIComponent(celular)}
-        &licose=${encodeURIComponent(licose)}`
-
-    })
-
-    .then(res => res.text())
-
-    .then(data => {
-
-        console.log("REGISTRO RESPUESTA:", data);
-
-        if (data.trim() === "ok") {
-
-            alert("Usuario creado correctamente");
-
-            window.location.href = "login.html";
-
-        }
-
-        else if (data.trim() === "existe") {
-
-            alert("Ese usuario ya existe");
-
-        }
-
-        else {
-
-            alert("Error real: " + data);
-
-        }
-
-    });
+input.type =
+input.type === "password"
+? "text"
+: "password";
 
 }
 
+const passwordInput =
+document.getElementById("password");
 
-// -------------------------------
-// 👤 INVITADO
-// -------------------------------
+passwordInput.addEventListener("input",()=>{
 
-function entrarComoInvitado() {
+const value =
+passwordInput.value;
 
-    localStorage.removeItem("usuarioActivo");
+const strength =
+document.getElementById("passwordStrength");
 
-    window.location.href = "inicio.html";
+if(value.length < 8){
+
+strength.innerHTML =
+"🔴 Débil";
+
+strength.style.color = "red";
+
+}
+else if(
+/(?=.*[A-Z])(?=.*[\W_])/.test(value)
+){
+
+strength.innerHTML =
+"🟢 Segura";
+
+strength.style.color = "green";
+
+}
+else{
+
+strength.innerHTML =
+"🟠 Media";
+
+strength.style.color = "orange";
 
 }
 
+});
 
-// -------------------------------
-// 🔘 EVENTOS
-// -------------------------------
+// --------------------
+// VALIDAR EMAIL
+// --------------------
 
-document.addEventListener("DOMContentLoaded", () => {
+function validarCorreo(correo){
 
-    const btnLogin = document.getElementById("btnLogin");
+const regex =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const btnInvitado = document.getElementById("btnInvitado");
+return regex.test(correo);
 
-    const btnRegistro = document.getElementById("btnRegistro");
+}
 
+// --------------------
+// LOGIN
+// --------------------
 
-    if (btnLogin) {
+document.getElementById("btnLogin")
+.addEventListener("click",()=>{
 
-        btnLogin.addEventListener("click", login);
+const user =
+document.getElementById("loginUsuario")
+.value
+.trim();
 
-    }
+const pass =
+document.getElementById("loginPassword")
+.value
+.trim();
 
+if(!user || !pass){
 
-    if (btnInvitado) {
+alert("Completa todos los campos");
+return;
 
-        btnInvitado.addEventListener("click", entrarComoInvitado);
+}
 
-    }
+fetch("http://localhost/agroalerta/php/login.php",{
 
+method:"POST",
 
-    if (btnRegistro) {
+headers:{
+"Content-Type":
+"application/x-www-form-urlencoded"
+},
 
-        btnRegistro.addEventListener("click", registrarUsuario);
+body:
+`correo=${encodeURIComponent(user)}
+&password=${encodeURIComponent(pass)}`
 
-    }
+})
+
+.then(res=>res.text())
+
+.then(data=>{
+
+console.log(data);
+
+if(data.trim() === "ok"){
+
+localStorage.setItem(
+"usuarioActivo",
+JSON.stringify({
+correo:user
+})
+);
+
+alert("Inicio de sesión exitoso");
+
+window.location.href = "inicio.html";
+
+}else{
+
+alert("Correo o contraseña incorrectos");
+
+}
+
+});
+
+});
+
+// --------------------
+// REGISTRO
+// --------------------
+
+document.getElementById("btnRegistro")
+.addEventListener("click",()=>{
+
+const nombre =
+document.getElementById("nombre").value.trim();
+
+const apellido =
+document.getElementById("apellido").value.trim();
+
+const correo =
+document.getElementById("usuario").value.trim();
+
+const cedula =
+document.getElementById("cedula").value.trim();
+
+const celular =
+document.getElementById("celular").value.trim();
+
+const licose =
+document.getElementById("licose").value.trim();
+
+const password =
+document.getElementById("password").value.trim();
+
+const confirmPassword =
+document.getElementById("confirmPassword").value.trim();
+
+const tipo =
+document.getElementById("tipoUsuario").value;
+
+const codigoAdmin =
+document.getElementById("codigoAdmin").value.trim();
+
+if(
+!nombre ||
+!apellido ||
+!correo ||
+!cedula ||
+!celular ||
+!licose ||
+!password ||
+!confirmPassword
+){
+
+alert("Completa todos los campos");
+return;
+
+}
+
+// --------------------
+// VALIDAR EMAIL
+// --------------------
+
+if(!validarCorreo(correo)){
+
+alert("Ingresa un correo electrónico válido");
+
+return;
+
+}
+
+if(password !== confirmPassword){
+
+alert("Las contraseñas no coinciden");
+return;
+
+}
+
+if(password.length < 8){
+
+alert(
+"La contraseña debe tener mínimo 8 caracteres"
+);
+
+return;
+
+}
+
+if(
+tipo === "administrador" &&
+codigoAdmin !== "AGRO2026"
+){
+
+alert("Código administrador incorrecto");
+return;
+
+}
+
+fetch("http://localhost/agroalerta/php/registro.php",{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/x-www-form-urlencoded"
+},
+
+body:
+`correo=${encodeURIComponent(correo)}
+&password=${encodeURIComponent(password)}
+&cedula=${encodeURIComponent(cedula)}
+&celular=${encodeURIComponent(celular)}
+&licose=${encodeURIComponent(licose)}
+&nombre=${encodeURIComponent(nombre)}
+&apellido=${encodeURIComponent(apellido)}
+&tipo_usuario=${encodeURIComponent(tipo)}`
+
+})
+
+.then(res=>res.text())
+
+.then(data=>{
+
+console.log(data);
+
+if(data.trim() === "ok"){
+
+alert("Cuenta creada correctamente");
+
+tabLogin.click();
+
+}else if(data.trim() === "existe"){
+
+alert("Ese correo electrónico ya existe");
+
+}else{
+
+alert("Error: " + data);
+
+}
+
+});
+
+});
+
+// --------------------
+// INVITADO
+// --------------------
+
+document.getElementById("btnInvitado")
+.addEventListener("click",()=>{
+
+localStorage.removeItem("usuarioActivo");
+
+window.location.href = "inicio.html";
 
 });

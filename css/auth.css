@@ -1,0 +1,617 @@
+/* ========================= */
+/* AGROALERTA AUTH */
+/* ========================= */
+
+:root{
+
+--primary:#2d5a27;
+--primaryHover:#21461d;
+
+--dark:#111827;
+
+--text:#4b5563;
+
+--white:#ffffff;
+
+--light:#f8fafc;
+
+--border:#e5e7eb;
+
+--shadow:
+0 20px 45px rgba(0,0,0,.10);
+
+}
+
+/* ========================= */
+/* RESET */
+/* ========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Inter',sans-serif;
+
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:30px;
+
+background:
+linear-gradient(rgba(0,0,0,.35),
+rgba(0,0,0,.35)),
+url('../img/campo.jpg');
+
+background-size:cover;
+background-position:center;
+
+overflow-x:hidden;
+
+position:relative;
+
+}
+
+/* ========================= */
+/* OVERLAY */
+/* ========================= */
+
+.overlay{
+
+position:fixed;
+
+inset:0;
+
+backdrop-filter:blur(6px);
+
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,.15),
+rgba(0,0,0,.35)
+);
+
+}
+
+/* ========================= */
+/* CONTAINER */
+/* ========================= */
+
+.auth-container{
+
+position:relative;
+
+z-index:10;
+
+width:100%;
+max-width:560px;
+
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.auth-card{
+
+background:
+rgba(255,255,255,.94);
+
+backdrop-filter:blur(16px);
+
+border:1px solid rgba(255,255,255,.4);
+
+border-radius:32px;
+
+padding:40px;
+
+box-shadow:var(--shadow);
+
+animation:fadeUp .5s ease;
+
+}
+
+/* ========================= */
+/* ANIMATION */
+/* ========================= */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:
+translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+}
+
+/* ========================= */
+/* LOGO */
+/* ========================= */
+
+.logo-area{
+
+text-align:center;
+
+margin-bottom:32px;
+
+}
+
+.logo{
+
+width:90px;
+height:90px;
+
+object-fit:cover;
+
+border-radius:50%;
+
+border:4px solid rgba(45,90,39,.12);
+
+margin-bottom:18px;
+
+}
+
+.logo-area h1{
+
+font-size:2rem;
+
+font-weight:800;
+
+color:var(--dark);
+
+margin-bottom:8px;
+
+}
+
+.logo-area p{
+
+font-size:.95rem;
+
+color:var(--text);
+
+}
+
+/* ========================= */
+/* TABS */
+/* ========================= */
+
+.tabs{
+
+display:flex;
+
+background:#f3f4f6;
+
+padding:6px;
+
+border-radius:18px;
+
+margin-bottom:32px;
+
+}
+
+.tab{
+
+flex:1;
+
+border:none;
+
+background:none;
+
+padding:15px;
+
+font-size:.95rem;
+
+font-weight:700;
+
+border-radius:14px;
+
+cursor:pointer;
+
+transition:.3s;
+
+color:#6b7280;
+
+}
+
+.tab.active{
+
+background:var(--white);
+
+color:var(--primary);
+
+box-shadow:
+0 4px 12px rgba(0,0,0,.06);
+
+}
+
+/* ========================= */
+/* FORMS */
+/* ========================= */
+
+.form-area{
+display:none;
+}
+
+.activeForm{
+display:block;
+}
+
+/* ========================= */
+/* INPUTS */
+/* ========================= */
+
+.input-group{
+
+margin-bottom:20px;
+
+}
+
+.input-group label{
+
+display:block;
+
+margin-bottom:10px;
+
+font-size:.95rem;
+
+font-weight:600;
+
+color:var(--dark);
+
+}
+
+.input-group input{
+
+width:100%;
+
+padding:15px 16px;
+
+border-radius:16px;
+
+border:1px solid var(--border);
+
+background:white;
+
+font-size:.95rem;
+
+transition:.3s;
+
+color:var(--dark);
+
+}
+
+.input-group input:focus{
+
+outline:none;
+
+border-color:rgba(45,90,39,.4);
+
+box-shadow:
+0 0 0 4px rgba(45,90,39,.08);
+
+}
+
+/* ========================= */
+/* PASSWORD */
+/* ========================= */
+
+.password-box{
+
+position:relative;
+
+}
+
+.showPass{
+
+position:absolute;
+
+top:50%;
+right:15px;
+
+transform:translateY(-50%);
+
+border:none;
+
+background:none;
+
+cursor:pointer;
+
+font-size:1rem;
+
+opacity:.65;
+
+transition:.3s;
+
+}
+
+.showPass:hover{
+
+opacity:1;
+
+}
+
+/* ========================= */
+/* BUTTONS */
+/* ========================= */
+
+.main-btn{
+
+width:100%;
+
+border:none;
+
+padding:16px;
+
+border-radius:18px;
+
+background:var(--primary);
+
+color:white;
+
+font-size:1rem;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+margin-top:8px;
+
+}
+
+.main-btn:hover{
+
+background:var(--primaryHover);
+
+transform:translateY(-2px);
+
+}
+
+.guest-btn{
+
+width:100%;
+
+border:none;
+
+padding:15px;
+
+border-radius:18px;
+
+background:#f3f4f6;
+
+font-weight:700;
+
+cursor:pointer;
+
+margin-top:14px;
+
+transition:.3s;
+
+}
+
+.guest-btn:hover{
+
+background:#e5e7eb;
+
+}
+
+/* ========================= */
+/* BOTTOM */
+/* ========================= */
+
+.bottom-text{
+
+margin-top:24px;
+
+text-align:center;
+
+font-size:.95rem;
+
+color:var(--text);
+
+}
+
+.bottom-text span{
+
+color:var(--primary);
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+/* ========================= */
+/* USER TYPE */
+/* ========================= */
+
+.tipo-usuario{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:16px;
+
+margin-bottom:28px;
+
+}
+
+.tipo-card{
+
+padding:22px;
+
+border-radius:22px;
+
+border:1px solid var(--border);
+
+background:white;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.tipo-card:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 12px 25px rgba(0,0,0,.06);
+
+}
+
+.tipo-card h3{
+
+margin-bottom:8px;
+
+font-size:1rem;
+
+}
+
+.tipo-card p{
+
+font-size:.9rem;
+
+color:var(--text);
+
+}
+
+.activeTipo{
+
+border-color:rgba(45,90,39,.4);
+
+background:#f4faf3;
+
+}
+
+/* ========================= */
+/* DOUBLE INPUT */
+/* ========================= */
+
+.double-input{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:16px;
+
+}
+
+/* ========================= */
+/* EXTRA */
+/* ========================= */
+
+.hidden{
+display:none;
+}
+
+.remember{
+
+margin-bottom:18px;
+
+font-size:.92rem;
+
+color:var(--text);
+
+}
+
+#passwordStrength{
+
+margin-top:10px;
+
+font-size:.85rem;
+
+font-weight:700;
+
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:700px){
+
+.auth-card{
+
+padding:30px 24px;
+
+border-radius:26px;
+
+}
+
+.double-input{
+
+grid-template-columns:1fr;
+
+}
+
+.tipo-usuario{
+
+grid-template-columns:1fr;
+
+}
+
+.logo-area h1{
+
+font-size:1.8rem;
+
+}
+
+}
+
+@media(max-width:500px){
+
+body{
+
+padding:16px;
+
+}
+
+.auth-card{
+
+padding:24px 18px;
+
+}
+
+.tabs{
+
+flex-direction:column;
+
+gap:8px;
+
+background:none;
+
+padding:0;
+
+}
+
+.tab{
+
+background:#f3f4f6;
+
+}
+
+}

@@ -16,7 +16,7 @@ function esInvitado() {
 function protegerRuta() {
   if (esInvitado()) {
     alert("Debes iniciar sesión");
-    window.location.href = "login.html";
+    window.location.href = "auth.html";
   }
 }
 

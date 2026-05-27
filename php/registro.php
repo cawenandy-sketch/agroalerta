@@ -1,105 +1,205 @@
 <?php
+
 include("conexion.php");
 
 // -------------------------------
-// 🔐 VALIDAR QUE LLEGUEN DATOS
+// VALIDAR DATOS
 // -------------------------------
+
 if (
-    !isset($_POST['usuario']) ||
+    !isset($_POST['nombre']) ||
+    !isset($_POST['apellido']) ||
+    !isset($_POST['correo']) ||
     !isset($_POST['password']) ||
     !isset($_POST['cedula']) ||
     !isset($_POST['celular']) ||
-    !isset($_POST['licose'])
+    !isset($_POST['licose']) ||
+    !isset($_POST['tipo_usuario'])
 ) {
+
     echo "error";
     exit();
+
 }
 
 // -------------------------------
-// 🧹 LIMPIAR DATOS
+// LIMPIAR DATOS
 // -------------------------------
-$usuario = trim($_POST['usuario']);
+
+$nombre = trim($_POST['nombre']);
+
+$apellido = trim($_POST['apellido']);
+
+$correo = trim($_POST['correo']);
+
 $password = trim($_POST['password']);
+
 $cedula = trim($_POST['cedula']);
+
 $celular = trim($_POST['celular']);
+
 $licose = trim($_POST['licose']);
 
+$tipo_usuario = trim($_POST['tipo_usuario']);
+
 // -------------------------------
-// ❌ VALIDAR VACÍOS
+// VALIDAR VACÍOS
 // -------------------------------
+
 if (
-    empty($usuario) ||
+    empty($nombre) ||
+    empty($apellido) ||
+    empty($correo) ||
     empty($password) ||
     empty($cedula) ||
     empty($celular) ||
-    empty($licose)
+    empty($licose) ||
+    empty($tipo_usuario)
 ) {
+
     echo "error";
     exit();
+
 }
 
 // -------------------------------
-// 🔒 VALIDACIONES FUERTES
+// VALIDAR CORREO
 // -------------------------------
 
-// Password: mínimo 8, 1 mayúscula, 1 símbolo
+if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+
+    echo "correo_invalido";
+    exit();
+
+}
+
+// -------------------------------
+// VALIDACIONES
+// -------------------------------
+
+// Password segura
+
 if (!preg_match('/^(?=.*[A-Z])(?=.*[\W_]).{8,}$/', $password)) {
+
     echo "password_insegura";
     exit();
+
 }
 
-// Cédula: exactamente 8 números
+// Cedula
+
 if (!preg_match('/^[0-9]{8}$/', $cedula)) {
+
     echo "cedula_invalida";
     exit();
+
 }
 
-// Celular: exactamente 9 números
+// Celular
+
 if (!preg_match('/^[0-9]{9}$/', $celular)) {
+
     echo "celular_invalido";
     exit();
+
 }
 
-// LICOSE: 12 caracteres alfanuméricos
+// Licose
+
 if (!preg_match('/^[A-Za-z0-9]{12}$/', $licose)) {
+
     echo "licose_invalido";
     exit();
+
+}
+
+// Tipo usuario
+
+if (
+    $tipo_usuario !== "ganadero" &&
+    $tipo_usuario !== "administrador"
+) {
+
+    echo "tipo_invalido";
+    exit();
+
 }
 
 // -------------------------------
-// 🔍 VERIFICAR USUARIO EXISTENTE
+// VERIFICAR CORREO EXISTENTE
 // -------------------------------
-$check = $conexion->prepare("SELECT id FROM usuarios WHERE usuario = ?");
-$check->bind_param("s", $usuario);
+
+$check = $conexion->prepare("
+    SELECT id
+    FROM usuarios
+    WHERE correo = ?
+");
+
+$check->bind_param("s", $correo);
+
 $check->execute();
+
 $res = $check->get_result();
 
 if ($res->num_rows > 0) {
-    echo "existe";
+
+    echo "correo_existente";
     exit();
+
 }
 
 // -------------------------------
-// 🔐 HASH DE PASSWORD (IMPORTANTE)
+// HASH PASSWORD
 // -------------------------------
-$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+$passwordHash = password_hash(
+    $password,
+    PASSWORD_DEFAULT
+);
 
 // -------------------------------
-// 💾 INSERTAR USUARIO
+// INSERTAR USUARIO
 // -------------------------------
+
 $stmt = $conexion->prepare("
-    INSERT INTO usuarios (usuario, password, cedula, celular, licose)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO usuarios
+    (
+        nombre,
+        apellido,
+        correo,
+        password,
+        cedula,
+        celular,
+        licose,
+        tipo_usuario
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
-$stmt->bind_param("sssss", $usuario, $passwordHash, $cedula, $celular, $licose);
+$stmt->bind_param(
+    "ssssssss",
+    $nombre,
+    $apellido,
+    $correo,
+    $passwordHash,
+    $cedula,
+    $celular,
+    $licose,
+    $tipo_usuario
+);
 
 if ($stmt->execute()) {
+
     echo "ok";
+
 } else {
+
     echo "error:" . $stmt->error;
+
 }
 
 $stmt->close();
+
 $conexion->close();
+
 ?>
