@@ -23,7 +23,6 @@ if (
 // -------------------------------
 
 $correo = trim($_POST['correo']);
-
 $password = trim($_POST['password']);
 
 // -------------------------------
@@ -68,7 +67,6 @@ $stmt = $conexion->prepare("
 ");
 
 $stmt->bind_param("s", $correo);
-
 $stmt->execute();
 
 $resultado = $stmt->get_result();
@@ -76,6 +74,10 @@ $resultado = $stmt->get_result();
 if ($resultado->num_rows <= 0) {
 
     echo "error";
+
+    $stmt->close();
+    $conexion->close();
+
     exit();
 
 }
@@ -91,16 +93,20 @@ $passwordHash = $datos['password'];
 if (password_verify($password, $passwordHash)) {
 
     $_SESSION['usuario_id'] = $datos['id'];
-
     $_SESSION['nombre'] = $datos['nombre'];
-
     $_SESSION['apellido'] = $datos['apellido'];
-
     $_SESSION['correo'] = $datos['correo'];
-
     $_SESSION['tipo_usuario'] = $datos['tipo_usuario'];
 
-    echo "ok";
+    if ($datos['tipo_usuario'] === "administrador") {
+
+        echo "administrador";
+
+    } else {
+
+        echo "ganadero";
+
+    }
 
 } else {
 
@@ -109,7 +115,6 @@ if (password_verify($password, $passwordHash)) {
 }
 
 $stmt->close();
-
 $conexion->close();
 
 ?>

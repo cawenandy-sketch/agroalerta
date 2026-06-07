@@ -21,7 +21,7 @@ if (!isset($_POST['id'])) {
 $id = intval($_POST['id']);
 
 $stmt = $conexion->prepare("
-DELETE FROM animales
+DELETE FROM usuarios
 WHERE id = ?
 ");
 
@@ -31,25 +31,6 @@ $stmt->bind_param(
 );
 
 if ($stmt->execute()) {
-
-    $admin_id = $_SESSION['usuario_id'];
-
-    $log = $conexion->prepare("
-    INSERT INTO auditoria_admin
-    (admin_id, accion)
-    VALUES (?, ?)
-    ");
-
-    $accion = "Eliminó animal ID $id";
-
-    $log->bind_param(
-        "is",
-        $admin_id,
-        $accion
-    );
-
-    $log->execute();
-    $log->close();
 
     echo "ok";
 

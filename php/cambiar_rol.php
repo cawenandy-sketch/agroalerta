@@ -11,7 +11,10 @@ if (!isset($_SESSION['usuario_id'])) {
 
 }
 
-if (!isset($_POST['id'])) {
+if (
+    !isset($_POST['id']) ||
+    !isset($_POST['rol'])
+) {
 
     echo "error";
     exit();
@@ -20,36 +23,31 @@ if (!isset($_POST['id'])) {
 
 $id = intval($_POST['id']);
 
+$rol = $_POST['rol'];
+
+if (
+    $rol !== "ganadero" &&
+    $rol !== "administrador"
+) {
+
+    echo "rol_invalido";
+    exit();
+
+}
+
 $stmt = $conexion->prepare("
-DELETE FROM animales
+UPDATE usuarios
+SET tipo_usuario = ?
 WHERE id = ?
 ");
 
 $stmt->bind_param(
-    "i",
+    "si",
+    $rol,
     $id
 );
 
 if ($stmt->execute()) {
-
-    $admin_id = $_SESSION['usuario_id'];
-
-    $log = $conexion->prepare("
-    INSERT INTO auditoria_admin
-    (admin_id, accion)
-    VALUES (?, ?)
-    ");
-
-    $accion = "Eliminó animal ID $id";
-
-    $log->bind_param(
-        "is",
-        $admin_id,
-        $accion
-    );
-
-    $log->execute();
-    $log->close();
 
     echo "ok";
 

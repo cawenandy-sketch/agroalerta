@@ -1,15 +1,13 @@
-// auth.js
+// login.js
 
 // --------------------
 // TABS
 // --------------------
 
 const tabLogin = document.getElementById("tabLogin");
-
 const tabRegistro = document.getElementById("tabRegistro");
 
 const loginForm = document.getElementById("loginForm");
-
 const registroForm = document.getElementById("registroForm");
 
 tabLogin.addEventListener("click",()=>{
@@ -190,8 +188,7 @@ headers:{
 },
 
 body:
-`correo=${encodeURIComponent(user)}
-&password=${encodeURIComponent(pass)}`
+`correo=${encodeURIComponent(user)}&password=${encodeURIComponent(pass)}`
 
 })
 
@@ -201,12 +198,13 @@ body:
 
 console.log(data);
 
-if(data.trim() === "ok"){
+if(data.trim() === "ganadero"){
 
 localStorage.setItem(
 "usuarioActivo",
 JSON.stringify({
-correo:user
+correo:user,
+tipo:"ganadero"
 })
 );
 
@@ -214,7 +212,36 @@ alert("Inicio de sesión exitoso");
 
 window.location.href = "inicio.html";
 
-}else{
+}
+else if(data.trim() === "administrador"){
+
+localStorage.setItem(
+"usuarioActivo",
+JSON.stringify({
+correo: user,
+tipo: "administrador"
+})
+);
+
+// Guardamos nombre e ID del admin para el panel
+fetch("http://localhost/agroalerta/php/obtener_usuarios.php")
+  .then(r => r.json())
+  .then(usuarios => {
+    const admin = usuarios.find(u => u.correo === user);
+    if(admin){
+      sessionStorage.setItem('admin_nombre', admin.nombre + ' ' + admin.apellido);
+      sessionStorage.setItem('admin_id', admin.id);
+    }
+    alert("Bienvenido Administrador");
+    window.location.href = "panel_admin.html";
+  })
+  .catch(() => {
+    alert("Bienvenido Administrador");
+    window.location.href = "panel_admin.html";
+  });
+
+}
+else{
 
 alert("Correo o contraseña incorrectos");
 
@@ -277,14 +304,9 @@ return;
 
 }
 
-// --------------------
-// VALIDAR EMAIL
-// --------------------
-
 if(!validarCorreo(correo)){
 
 alert("Ingresa un correo electrónico válido");
-
 return;
 
 }
@@ -308,7 +330,7 @@ return;
 
 if(
 tipo === "administrador" &&
-codigoAdmin !== "AGRO2026"
+codigoAdmin !== "AGROADMIN2026"
 ){
 
 alert("Código administrador incorrecto");
@@ -326,14 +348,7 @@ headers:{
 },
 
 body:
-`correo=${encodeURIComponent(correo)}
-&password=${encodeURIComponent(password)}
-&cedula=${encodeURIComponent(cedula)}
-&celular=${encodeURIComponent(celular)}
-&licose=${encodeURIComponent(licose)}
-&nombre=${encodeURIComponent(nombre)}
-&apellido=${encodeURIComponent(apellido)}
-&tipo_usuario=${encodeURIComponent(tipo)}`
+`correo=${encodeURIComponent(correo)}&password=${encodeURIComponent(password)}&cedula=${encodeURIComponent(cedula)}&celular=${encodeURIComponent(celular)}&licose=${encodeURIComponent(licose)}&nombre=${encodeURIComponent(nombre)}&apellido=${encodeURIComponent(apellido)}&tipo_usuario=${encodeURIComponent(tipo)}&codigo_admin=${encodeURIComponent(codigoAdmin)}`
 
 })
 
@@ -349,11 +364,13 @@ alert("Cuenta creada correctamente");
 
 tabLogin.click();
 
-}else if(data.trim() === "existe"){
+}
+else if(data.trim() === "correo_existente"){
 
 alert("Ese correo electrónico ya existe");
 
-}else{
+}
+else{
 
 alert("Error: " + data);
 

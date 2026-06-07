@@ -399,8 +399,17 @@ let nuevoPeso = prompt(
 "Ingrese el nuevo peso del animal:"
 );
 
-if(!nuevoPeso){
+if(nuevoPeso === null || nuevoPeso.trim() === ""){
 return;
+}
+
+nuevoPeso = Number(nuevoPeso);
+
+if(isNaN(nuevoPeso) || nuevoPeso < 45 || nuevoPeso > 1000){
+
+alert("Peso inválido");
+return;
+
 }
 
 let nuevoEstado = prompt(
@@ -458,11 +467,11 @@ body:
 
 .then(data => {
 
-console.log(data);
+console.log("ACTUALIZAR:", data);
 
 if(data.trim() === "ok"){
 
-alert("Animal actualizado");
+alert("Animal actualizado correctamente");
 
 cargarAnimales();
 
@@ -511,11 +520,10 @@ data.forEach(item => {
 texto +=
 `Fecha: ${item.fecha}
 
-Peso anterior: ${item.peso_anterior} kg
-Peso nuevo: ${item.peso_nuevo} kg
+Acción: ${item.accion}
 
-Estado anterior: ${item.estado_anterior}
-Estado nuevo: ${item.estado_nuevo}
+Detalle:
+${item.detalle}
 
 ----------------------------
 
@@ -536,7 +544,6 @@ alert("Error al obtener historial");
 });
 
 }
-
 
 
 

@@ -3,6 +3,7 @@
 session_start();
 
 include("conexion.php");
+include("guardar_historial.php");
 
 if(!isset($_SESSION['usuario_id'])){
 
@@ -29,6 +30,34 @@ $pesoNuevo = floatval($_POST['peso']);
 $estadoNuevo = trim($_POST['estado']);
 
 $usuario_id = $_SESSION['usuario_id'];
+
+// --------------------
+// VALIDAR PESO
+// --------------------
+
+if($pesoNuevo < 45 || $pesoNuevo > 1000){
+
+    echo "peso_invalido";
+    exit();
+
+}
+
+// --------------------
+// VALIDAR ESTADO
+// --------------------
+
+$estadosValidos = [
+    "Vivo",
+    "Vendido",
+    "Fallecido"
+];
+
+if(!in_array($estadoNuevo, $estadosValidos)){
+
+    echo "estado_invalido";
+    exit();
+
+}
 
 // --------------------
 // OBTENER DATOS ANTERIORES
@@ -63,6 +92,8 @@ $animal = $resultado->fetch_assoc();
 $pesoAnterior = $animal['peso'];
 
 $estadoAnterior = $animal['estado'];
+
+$buscar->close();
 
 // --------------------
 // CALCULAR SALUD
@@ -116,32 +147,12 @@ $usuario_id
 
 if($stmt->execute()){
 
-    // --------------------
-    // GUARDAR HISTORIAL
-    // --------------------
-
-    $historial = $conexion->prepare("
-    INSERT INTO historial_animales
-    (
-        animal_id,
-        peso_anterior,
-        peso_nuevo,
-        estado_anterior,
-        estado_nuevo
-    )
-    VALUES (?, ?, ?, ?, ?)
-    ");
-
-    $historial->bind_param(
-    "iddss",
-    $id,
-    $pesoAnterior,
-    $pesoNuevo,
-    $estadoAnterior,
-    $estadoNuevo
+    guardarHistorial(
+        $conexion,
+        $id,
+        "Actualización",
+        "Peso: $pesoAnterior kg -> $pesoNuevo kg | Estado: $estadoAnterior -> $estadoNuevo"
     );
-
-    $historial->execute();
 
     echo "ok";
 

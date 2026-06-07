@@ -21,15 +21,13 @@ if (!isset($_GET['id'])) {
 $id = intval($_GET['id']);
 
 $stmt = $conexion->prepare("
-    SELECT
-        peso_anterior,
-        peso_nuevo,
-        estado_anterior,
-        estado_nuevo,
-        fecha
-    FROM historial_animales
-    WHERE animal_id = ?
-    ORDER BY fecha DESC
+SELECT
+accion,
+detalle,
+fecha
+FROM historial_animales
+WHERE animal_id = ?
+ORDER BY fecha DESC
 ");
 
 $stmt->bind_param("i", $id);

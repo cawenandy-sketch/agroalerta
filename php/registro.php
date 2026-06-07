@@ -42,6 +42,10 @@ $licose = trim($_POST['licose']);
 
 $tipo_usuario = trim($_POST['tipo_usuario']);
 
+$codigo_admin = isset($_POST['codigo_admin'])
+    ? trim($_POST['codigo_admin'])
+    : "";
+
 // -------------------------------
 // VALIDAR VACÍOS
 // -------------------------------
@@ -126,6 +130,27 @@ if (
 }
 
 // -------------------------------
+// CÓDIGO SECRETO ADMIN
+// -------------------------------
+
+if ($tipo_usuario === "administrador") {
+
+    if ($codigo_admin !== "AGROADMIN2026") {
+
+        echo "codigo_admin_invalido";
+        exit();
+
+    }
+
+}
+
+// -------------------------------
+// DEFINIR ROL
+// -------------------------------
+
+$rol = $tipo_usuario;
+
+// -------------------------------
 // VERIFICAR CORREO EXISTENTE
 // -------------------------------
 
@@ -171,13 +196,14 @@ $stmt = $conexion->prepare("
         cedula,
         celular,
         licose,
-        tipo_usuario
+        tipo_usuario,
+        rol
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
 $stmt->bind_param(
-    "ssssssss",
+    "sssssssss",
     $nombre,
     $apellido,
     $correo,
@@ -185,7 +211,8 @@ $stmt->bind_param(
     $cedula,
     $celular,
     $licose,
-    $tipo_usuario
+    $tipo_usuario,
+    $rol
 );
 
 if ($stmt->execute()) {
